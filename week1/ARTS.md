@@ -183,7 +183,7 @@ FFMpeg basics
 - codec - Each stream is encoded by a different kind of codec. The codec defines how the actual data is COded and DECoded - hence the name CODEC. Examples of codecs are DivX and MP3. packet
 - Packets - pieces of data that can contain bits of data that are decoded into raw frames that we can finally manipulate for our application. For our purposes, each packet contains complete frames, or multiple frames in the case of audio.
 
-RTP 协议为了广泛地支持各种多媒体格式（如 H.264, MPEG-4, MJPEG, MPEG），没有在协议中体现出具体的应用配置，而是通过 profile 配置文件及负载类型格式说明文件的形式来提供(sdp file)。
+RTP supports many codec, but the video/audio codec definition is in a profile file(sdp file). To figure out what each of the sdp parameter means, the best way is to read/search in the [rfc doc](https://tools.ietf.org/html/rfc4566).
 
 Reference:
 https://superuser.com/questions/300897/what-is-a-codec-e-g-divx-and-how-does-it-differ-from-a-file-format-e-g-mp/300997#300997
@@ -191,3 +191,9 @@ https://superuser.com/questions/300897/what-is-a-codec-e-g-divx-and-how-does-it-
 https://github.com/babosa/Course#course-3
 
 ## Share
+
+procrastination... not reading anything technical yet. Sharing a past work for kafka config. Even though I do understand how Kafka starts and what to check in the log if failing, I constantly run into problems whenever I encounter a new environment. Using docker is the most easy and stable way to quickly spin up a Kafka.
+
+The following records docker-compose files to spin up Kafka with ssl and sasl. Switch branch to see alternatives.
+
+https://github.com/iyabchen/kafka-ssl-sasl-config
