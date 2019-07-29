@@ -138,9 +138,7 @@ func (this *LRUCache) Put(key int, value int)  {
 
 ## Review
 
-I just got a developer job at Facebook. Here’s how I prepped for my interviews.
-
-https://www.freecodecamp.org/news/software-engineering-interviews-744380f4f2af/
+[Here’s how I prepped for my interviews](https://www.freecodecamp.org/news/software-engineering-interviews-744380f4f2af/)
 
 Mostly, it is similar to the other interview articles, talks about the importance of algorithm and data structure. In all, it summarizes most of the aspects of an interview, and provides resources that one should study. How you should study the resources, it all depends on your background. I always see people sharing their algorithm solution, but seldom see how to analyze the problem, and find a pattern based on the past knowledge. For each type of algorithm, one can write at least 10 pages discussing all of its variation. In most of the problems, it requires a bit of tricks to convert a new problem into an old one, just like math questions. I guess only when you practice enough, then you build the connection in your brain for pattern recognition.
 
