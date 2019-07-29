@@ -192,8 +192,18 @@ https://github.com/babosa/Course#course-3
 
 ## Share
 
-procrastination... not reading anything technical yet. Sharing a past work for kafka config. Even though I do understand how Kafka starts and what to check in the log if failing, I constantly run into problems whenever I encounter a new environment. Using docker is the most easy and stable way to quickly spin up a Kafka.
+### My experience dealing with legacy code
 
-The following records docker-compose files to spin up Kafka with ssl and sasl. Switch branch to see alternatives.
+I read about how to deal with legacy code before. Basically, the first and foremost thing to do is to insert unit tests wherever possible. However, the world is not ideal, and not every one understands the importance of that nor has the capacity to make it right.
 
-https://github.com/iyabchen/kafka-ssl-sasl-config
+In my recent work, I tried to port some codes to another platform. I am thinking it is a good chance to show some good practice. I used catch2 as test framework after a bit of research around. While refactoring the code, I tried adding test cases when possible.
+
+Of course I still encounter many problems.
+
+1. The test framework catch2 can only access the classes publicly. For private functions, you are pretty much tied. [Some argue that it is a design problem](https://stackoverflow.com/questions/3676664/unit-testing-of-private-methods), saying if the private parts are complicated enough, it should be refactored to separate out. I do agree that it is a design problem. Since Golang does not have this public/protected/private definition, things are much simpler, and my mindset is still rooted for Golang. GTest supports `friend` class to address the issue, but switching test framework would again waste time.
+
+2. Not dare to change the puzzling logic. The code has not much comments explaining why, and nobody around actually knows. If the intention of the code is mysterious, during refactor, whether to remove the part you don't understand always cost me lots of time to estimate. Eventually, I usually choose not to remove, but just copy the code over, and not sure how to test it.
+
+3. I spotted some code smell. The old code mixed the data and the controlling logic together in the message queue. However, it uses that message queue to communicate with other apps which are legacy code too. You are not supposed to change the other apps, since they are gigantic and error prone, so at last, you have to make your code ugly, else much more work will be involved regarding re-design the message flow, and more untested code.
+
+To fix the problems properly, it requires fully understand of the code and clear definition of the requirement. Again there is quality and time tradeoff. The more I understand the code, the more I find the feature might be useless and be thrown away in the future. In that case, spending this amount of time and effort, does it worth?
