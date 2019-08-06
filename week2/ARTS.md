@@ -47,6 +47,25 @@ func partition(a []int, lo, hi  int) int{
 
 ## Review
 
+[The Rise and Fall of Object Oriented Programming](https://medium.com/machine-words/the-rise-and-fall-of-object-oriented-programming-d67078f970e2)
+
+My view for this article
+
+- I feel most of the points, even the functional programming part!
+- An good example to learn English
+  The author mentioned pain points in OOP, no solution is described yet. Golang, in most of the way, does abandon some OOP features to achieve more clarity.
+
+![playtus](playtus.jpg)
+
+OOP Problems
+
+- An object(playtus) does not belong to any existing category, and creating a new one "can have significant costs in terms of effort and program complexity".
+- Inheritance. Too many layers and methods causing unnecessary complexity. The author prefer composition > inheritance.
+- Objects and methods aren't real. They are "more a reflection of our human psychology than physical reality".
+- Visibility brings in complexity for writing test cases.
+- Relational database. Data are not like objects, but "I tend to think of relational streams of data as more like a fluid, where you divide, transform, and combine data using algebraic operations."
+- Functional programming. No need to stick to pure functional programming, use when applicable and appropriate. "the pure approach tends to take certain relatively straightforward programming exercises and turn them into puzzles"
+
 ## Tips
 
 Linux utilities for checking file symbols: `readelf`, `nm`, `ldd`, `c++filt`, `strings`. It comes very handy when an error pops up saying libxxx not found.
