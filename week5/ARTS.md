@@ -39,7 +39,7 @@ Turns out go does not have min for int, only for float.
 
 ### coin change 2
 
-This one asks for how many combinations. The tricky part
+This one asks for how many combinations. The tricky part:
 
 - to not duplicate, the outer loop need to be coins. This can be deducted by drawing it out using a small number.
 - dp[0] = 1, meaning 0 amount has 1 combination.
