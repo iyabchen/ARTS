@@ -119,9 +119,17 @@ The author also discussed the benefits of microservices to figure out what gain 
 - easy to upgrade
 - smaller (easy to understand)
 
-Things to concern:
+The author list a long list of things to concern, and I listed my thought in the bracket.
 
-> logging, monitoring, exception handling, fault tolerance, fallbacks, microservice to microservice communication, message formats, containerization, service discovery, backups, telemetry, alerts, tracing, build pipelines, release pipelines, tooling, sharing infrastructure code, documentation, scaling, timezone support, staged rollouts, API versioning, network latency, health checks, load balancing, CDC testing, fault tolerance, debugging and developing multiple microservices in our local development environment.
+- microservice to microservice communication, network latency, message formats, API versioning (this part should be planned ahead based on the requirement)
+-
+- containerization, health checks (a problem of creating Dockerfile. If not considering image size and build time, should be easy)
+- scaling, service discovery, load balancing, fault tolerance, fallbacks (provided by platform - service mesh/kubernetes etc)
+- monitoring, telemetry, alerts (prometheus)
+- logging, tracing, exception handling, timezone support, sharing infrastructure code (can reach some consensus during development)
+- testing, debugging and developing multiple microservices in our local development environment, build pipelines; release pipelines, staged rollouts (CI/CD), tooling
+- backups (db only)
+- documentation (everyone hates writing docs, and how to keep the doc in sync worth discussion)
 
 > The more we looked into microservices, the more it seemed that it was less about technology and more about structuring teams and the work that came into them.
 
