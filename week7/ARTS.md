@@ -122,7 +122,6 @@ The author also discussed the benefits of microservices to figure out what gain 
 The author list a long list of things to concern, and I listed my thought in the bracket.
 
 - microservice to microservice communication, network latency, message formats, API versioning (this part should be planned ahead based on the requirement)
--
 - containerization, health checks (a problem of creating Dockerfile. If not considering image size and build time, should be easy)
 - scaling, service discovery, load balancing, fault tolerance, fallbacks (provided by platform - service mesh/kubernetes etc)
 - monitoring, telemetry, alerts (prometheus)
