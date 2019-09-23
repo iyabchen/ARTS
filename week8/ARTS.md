@@ -204,6 +204,21 @@ policy: round-robin/ adjust traffic base on load
     User create private URLs, and choose whom to share -> create another column at the URL table storing allowed user IDs.
 
 ![summary](summary.png)
+For request generating a short url, the process is
+
+1. user send request to app server through LB
+2. app server verifies user api key exist, if not reject request (access DB to fetch user data)
+3. If user provides a shortURL, use that URL. fetch a short URL from key-DB, or app server already cached a list of free URL from key-DB.
+4. Update db with (shortURL, originURL, expiryDate, userID, ...).
+5. Update cache with LRU policy.
+
+For redirect/reading request, the process is
+
+1. User send request to app server through LB giving a short URL
+2. app server checks whether cache server contains it. If not found, then check db to find it.
+3. if found, check expired or not; if not found, returned.
+4. if found and not expired, update cache
+5. if found but expired, return expired to user, and optionally can clean up db and cache for that expired record, or wait for the clean up service to wipe them out.
 
 # Tips
 
