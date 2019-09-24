@@ -232,3 +232,63 @@ This happened because the `>` does is to create the file it wants to write to, a
 The solution, redirect to a temp file, and after modification, copy it back to the original name.
 
 # Share
+
+Switching from Golang to Python, not like dynamic type language, but have to learn anyway. I am confused about the memory model of python, constantly worried about thread-safe or not. The following article resolves some of my doubts.
+
+https://medium.com/@dannymcwaves/a-python-tutorial-to-understanding-scopes-and-closures-c6a3d3ba0937
+
+![](python_scopes.PNG)
+
+- Variable look up follows the flow in the graph. It starts with the inner most scope, and if cannot be found, then it looks into the upper level.
+
+- Regarding closure, if a variable is being referenced in a closure, then it won't be released in its scope. Go is similar.
+
+- When accessing a variable outside it’s scope, you cannot reference that variable and then later reassign it in the same function — variables are not hoisted. It throws an error. To bypass the problem, use global, nonlocal, or change a class's member.
+
+```
+a = 5
+def function():
+    print(a)
+    a = 10
+function() // error, because a cannot be reassigned.
+
+```
+
+nonlocal vs global:
+
+```
+def scope_test():
+    def do_local():
+        spam = "local spam" #此函数定义了另外的一个spam字符串变量，并且生命周期只在此函数内。此处的spam和外层的spam是两个变量，如果写出spam = spam + “local spam” 会报错
+    def do_nonlocal():
+        nonlocal  spam        #使用外层的spam变量
+        spam = "nonlocal spam"
+    def do_global():
+        global spam
+        spam = "global spam"
+    spam = "test spam"
+    do_local()
+    print("After local assignment:", spam)
+    do_nonlocal()
+    print("After nonlocal assignment:",spam)
+    do_global()
+    print("After global assignment:",spam)
+
+scope_test()
+print("In global scope:",spam)
+
+
+outputs:
+After local assignment: test spam
+After nonlocal assignment: nonlocal spam
+After global assignment: nonlocal spam
+In global scope: global spam
+————————————————
+版权声明：本文为CSDN博主「杨核桃Alvin」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/youngbit007/article/details/64905070
+```
+
+Reference
+
+- https://blog.csdn.net/youngbit007/article/details/64905070
+- https://stackoverflow.com/questions/392349/modify-bound-variables-of-a-closure-in-python
